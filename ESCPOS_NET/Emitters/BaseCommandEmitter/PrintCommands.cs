@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Text;
 using ESCPOS_NET.Emitters.BaseCommandValues;
 
 namespace ESCPOS_NET.Emitters
@@ -11,9 +12,11 @@ namespace ESCPOS_NET.Emitters
             // Fix OSX or Windows-style newlines
             data = data.Replace("\r\n", "\n");
             data = data.Replace("\r", "\n");
-
+            //added by abdusalam naas
+            return Encoding.UTF8.GetBytes(data); // to enable unicode arabic
             // TODO: Sanitize...
-            return data.ToCharArray().Select(x => (byte)x).ToArray();
+            // commented out by abdusalam naas
+            //return data.ToCharArray().Select(x => (byte)x).ToArray();
         }
 
         public virtual byte[] PrintLine(string line)
